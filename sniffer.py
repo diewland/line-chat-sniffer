@@ -9,10 +9,12 @@ def print_text(tag, req):
         this_msg = this_evt.get('message', {})
         this_src = this_evt.get('source', {})
 
-        # filter only text by user
-        if (this_msg.get('type') == 'text') and this_src.get('type') == 'user' :
+        # filter only text
+        if (this_msg.get('type') == 'text'):
             info = {
+                'src_type': this_src.get('type'),
                 'user_id': this_src.get('userId'),
+                'group_id': this_src.get('groupId'),
                 'text': this_msg.get('text'),
                 'timestamp': this_evt.get('timestamp'),
                 'destination': req.get('destination'),
