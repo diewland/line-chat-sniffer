@@ -17,7 +17,7 @@ def print_text(tag, req):
                 'group_id': this_src.get('groupId'),
                 'text': this_msg.get('text'),
                 'timestamp': this_evt.get('timestamp'),
-                'destination': req.get('destination'),
+                #'destination': req.get('destination'),
             }
             print(tag, info)
 
