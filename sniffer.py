@@ -3,9 +3,9 @@ from pprint import pprint as pp
 
 app = Flask(__name__)
 
-def print_text(tag, resp):
-    if len(resp['events']) > 0:
-        this_evt = resp['events'][0]
+def print_text(tag, req):
+    if len(req['events']) > 0:
+        this_evt = req['events'][0]
         this_msg = this_evt.get('message', {})
         this_src = this_evt.get('source', {})
 
@@ -15,7 +15,7 @@ def print_text(tag, resp):
                 'user_id': this_src.get('userId'),
                 'text': this_msg.get('text'),
                 'timestamp': this_evt.get('timestamp'),
-                'destination': resp.get('destination'),
+                'destination': req.get('destination'),
             }
             print(tag, info)
 
@@ -23,10 +23,10 @@ def print_text(tag, resp):
 def callback():
 
     tag = '<1337>'
-    resp = request.json
+    req = request.json
 
-    print(tag, resp)
-    #print_text(tag, resp)
+    #print(tag, req)
+    print_text(tag, req)
 
     return 'OK'
 
